@@ -11,7 +11,7 @@ I build with Claude Code every day on a weekly limit. Most of the waste I found 
 | **A line above the prompt** | `context 72% · 5h 18% · week 41%`. It turns yellow once the context passes the heads-up line. A figure the engine does not report is left out instead of being shown as 0. |
 | **A heads-up, then compaction** | At 80% context you get a one-time notice: a good moment to write a handoff and start fresh. At 90% the session is compacted once, told to keep decisions, open work, files being changed, checks to rerun and pitfalls. Both arm again after the context drops. |
 | **No whole reads of huge files** | A `Read` without `offset` or `limit` on a text file over 1,000 lines is refused, with a hint to read a range or use Grep. Images, PDFs and notebooks pass. |
-| **Long shell output cut** | Bash and PowerShell output over 400 lines reaches Claude as its first 150 and last 50 lines, with a note giving the path of the full text. Output from a failed command, or that mentions an error, a failure, a traceback, a panic or an exception, is left whole, because the line that matters may be in the middle. |
+| **Long shell output cut** | Bash and PowerShell output over 400 lines reaches Claude as its first 150 and last 50 lines, with a note naming the lines left out and how to get them: rerun the command narrowed with grep, or ask for a line range. Output from a failed command, or that mentions an error, a failure, a traceback, a panic or an exception, is left whole, because the line that matters may be in the middle. |
 
 Every threshold is a setting, and 0 turns that part off.
 
@@ -38,7 +38,7 @@ It is also listed in the [shared-repo-guard](https://github.com/naoanao/shared-r
   - the session's usage figures (`$.session.usage()`), the same ones the status line shows
   - a file Claude is about to read whole, only to count its lines
 - **Runs:** nothing. It starts no processes.
-- **Writes:** one file only, `outputs/last-output.txt` inside the mod's own folder: the full text of the most recent cut output, overwritten each time. Nothing that other tools run or read as settings or instructions.
+- **Writes:** nothing. It writes no files.
 - **Changes:**
   - it refuses a whole read of a long text file
   - it replaces long shell output with its head and tail

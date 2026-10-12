@@ -86,10 +86,11 @@ export function trimVerdict(stdout, isError, maxLines) {
   }
 }
 
-export function trimmedText(v, savedPath) {
-  const note = savedPath
-    ? '[context-saver: ' + v.omitted + ' of ' + v.total + ' lines left out. Full output: ' + savedPath + ' — read a range of it if you need the middle]'
-    : '[context-saver: ' + v.omitted + ' of ' + v.total + ' lines left out. The full output could not be saved; rerun with a narrower command if you need the middle]'
+export function trimmedText(v) {
+  const first = v.total - v.omitted - TAIL_LINES + 1
+  const note =
+    '[context-saver: lines ' + first + '-' + (v.total - TAIL_LINES) + ' of ' + v.total + ' left out. ' +
+    'If you need them, rerun the command narrowed with grep, or with sed -n or Select-Object for a line range]'
   return v.head + '\n' + note + '\n' + v.tail
 }
 

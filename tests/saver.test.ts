@@ -50,17 +50,15 @@ test('a ranged read of the same file runs', async ($, on) => {
   expect(seen.ran).toEqual(['Read'])
 })
 
-test('500 lines of shell output reach Claude as head and tail, and the full text is saved', async ($, on) => {
+test('500 lines of shell output reach Claude as head and tail, and nothing is written to disk', async ($, on) => {
   const seen = fakeEngine(on, { stdout: LONG })
   await start($)
   const r = await $.tool.call({ tool: 'Bash', command: 'ls -R' })
   const out = String(r.result?.stdout)
-  expect(out).toContain('line 150\n[context-saver: 300 of 500 lines left out')
+  expect(out).toContain('line 150\n[context-saver: lines 151-450 of 500 left out.')
   expect(out).not.toContain('line 151\n')
   expect(out.endsWith('line 500')).toBe(true)
-  expect(seen.written.length).toBe(1)
-  expect(seen.written[0].endsWith('last-output.txt')).toBe(true)
-  expect(out).toContain('outputs/last-output.txt')
+  expect(seen.written).toEqual([])
 })
 
 test('failed shell output is left whole', async ($, on) => {

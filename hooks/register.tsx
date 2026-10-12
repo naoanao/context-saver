@@ -88,13 +88,6 @@ export function register(on, options) {
     const res = await next(e)
     const v = trimVerdict(res?.result?.stdout, res?.isError, maxOutputLines)
     if (!v) return res
-    let path = ''
-    try {
-      await $.fs.write(`${$.plugin.root}/outputs/last-output.txt`, res.result.stdout)
-      path = `${$.plugin.root}/outputs/last-output.txt`
-    } catch {
-      path = ''
-    }
-    return withStdout(res, trimmedText(v, path))
+    return withStdout(res, trimmedText(v))
   })
 }
