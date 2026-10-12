@@ -1,0 +1,4 @@
+{
+  "description": "context-saver hooks module",
+  "modules": ["./register.tsx"]
+}

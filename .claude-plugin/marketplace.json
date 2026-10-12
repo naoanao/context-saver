@@ -1,0 +1,8 @@
+{
+  "name": "context-saver",
+  "owner": { "name": "naoanao" },
+  "metadata": {
+    "description": "Keeps Claude Code sessions light: usage line, heads-up and one compaction, no whole reads of huge files, long shell output cut."
+  },
+  "plugins": [{ "name": "context-saver", "source": "./" }]
+}

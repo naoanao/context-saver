@@ -1,0 +1,36 @@
+{
+  "name": "context-saver",
+  "version": "0.1.0",
+  "description": "Keeps Claude Code sessions light: a line above the prompt with context and usage, a heads-up and an automatic compaction before the window fills, a stop on reading huge files whole, and long shell output cut to its head and tail with the full text kept on disk.",
+  "author": { "name": "naoanao" },
+  "license": "MIT",
+  "homepage": "https://github.com/naoanao/context-saver",
+  "repository": "https://github.com/naoanao/context-saver",
+  "keywords": ["context", "usage", "tokens", "compaction", "productivity"],
+  "userConfig": {
+    "warnAt": {
+      "type": "string",
+      "title": "Heads-up at (%)",
+      "description": "Context fill at which a one-time notice suggests a handoff. 0 turns it off.",
+      "default": "80"
+    },
+    "compactAt": {
+      "type": "string",
+      "title": "Compact at (%)",
+      "description": "Context fill at which the session is compacted once, keeping decisions, open work and pitfalls. 0 turns it off.",
+      "default": "90"
+    },
+    "maxReadLines": {
+      "type": "string",
+      "title": "Largest whole-file read (lines)",
+      "description": "A Read without offset or limit on a text file longer than this is refused with a hint to read a range or search. 0 turns it off.",
+      "default": "1000"
+    },
+    "maxOutputLines": {
+      "type": "string",
+      "title": "Longest shell output (lines)",
+      "description": "Bash and PowerShell output longer than this is cut to its first 150 and last 50 lines; the full text is saved and its path shown. 0 turns it off.",
+      "default": "400"
+    }
+  }
+}
