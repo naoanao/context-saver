@@ -1,6 +1,6 @@
 {
   "name": "context-saver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Keeps Claude Code sessions light: a line above the prompt with context and usage, a heads-up and an automatic compaction before the window fills, a stop on reading huge files whole, and long shell output cut to its head and tail with the full text kept on disk.",
   "author": { "name": "naoanao" },
   "license": "MIT",

@@ -3,8 +3,6 @@ import {
   readVerdict, countLines, trimVerdict, trimmedText, withStdout,
 } from './logic.js'
 
-const KEEP_OUTPUTS = 20
-
 let warnAt = 80
 let compactAt = 90
 let maxReadLines = 1000
@@ -13,7 +11,6 @@ let maxOutputLines = 400
 let state = initialState()
 let band = ''
 let high = false
-let saved = 0
 
 async function refresh($) {
   let usage
@@ -93,8 +90,8 @@ export function register(on, options) {
     if (!v) return res
     let path = ''
     try {
-      path = $.plugin.root + '/outputs/output-' + (saved++ % KEEP_OUTPUTS) + '.txt'
-      await $.fs.write(path, res.result.stdout)
+      await $.fs.write(`${$.plugin.root}/outputs/last-output.txt`, res.result.stdout)
+      path = `${$.plugin.root}/outputs/last-output.txt`
     } catch {
       path = ''
     }

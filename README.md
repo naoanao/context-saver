@@ -38,7 +38,7 @@ It is also listed in the [shared-repo-guard](https://github.com/naoanao/shared-r
   - the session's usage figures (`$.session.usage()`), the same ones the status line shows
   - a file Claude is about to read whole, only to count its lines
 - **Runs:** nothing. It starts no processes.
-- **Writes:** the full text of a cut output, to `outputs/output-N.txt` inside the mod's own folder. It keeps the last 20 and overwrites the oldest.
+- **Writes:** one file only, `outputs/last-output.txt` inside the mod's own folder: the full text of the most recent cut output, overwritten each time. Nothing that other tools run or read as settings or instructions.
 - **Changes:**
   - it refuses a whole read of a long text file
   - it replaces long shell output with its head and tail

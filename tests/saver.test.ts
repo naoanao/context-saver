@@ -59,8 +59,8 @@ test('500 lines of shell output reach Claude as head and tail, and the full text
   expect(out).not.toContain('line 151\n')
   expect(out.endsWith('line 500')).toBe(true)
   expect(seen.written.length).toBe(1)
-  expect(seen.written[0].endsWith('output-0.txt')).toBe(true)
-  expect(out).toContain('outputs/output-0.txt')
+  expect(seen.written[0].endsWith('last-output.txt')).toBe(true)
+  expect(out).toContain('outputs/last-output.txt')
 })
 
 test('failed shell output is left whole', async ($, on) => {
